@@ -19,7 +19,7 @@ def enter_or_reg():
     elif button == 'Зарегистрироваться':
         return redirect(url_for('auth.reg'))
 
-# интерфейс для авторизации (в действии)
+# интерфейс для авторизации
 @auth.route('/enter')
 def enter():
     return render_template('user_auth.html')
