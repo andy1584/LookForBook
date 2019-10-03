@@ -1,0 +1,9 @@
+<!-- Пользователь не авторизован -->
+{% extends "base.html" %}
+
+{% block content %}
+<form method=POST action="/">
+    <input type=submit name=action value=Войти>
+    <input type=submit name=action value=Зарегистрироваться>
+</form>
+{% endblock %}

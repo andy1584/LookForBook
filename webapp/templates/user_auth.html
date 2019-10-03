@@ -1,0 +1,18 @@
+<!-- Пользователю предлагают войти под своим именем -->
+{% extends "base.html" %}
+
+{% block content %}
+    <form method=POST action="/enter">
+        <input type=submit name=action value="<< Назад">
+        <input type=text name=user placeholder=Имя>
+        <input type=password name=pass placeholder=Пароль>
+        <input type=submit name=action value="Войти >>">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <sub><p>{{ messages[0] }}</sub>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+

@@ -1,0 +1,17 @@
+<!-- Пользователю предлагают зарегистрироваться -->
+{% extends "base.html" %}
+
+{% block content %}
+    <form method=POST action="/register">
+        <input type=submit name=action value="<< Назад">
+        <input type=text name=user placeholder=Имя>
+        <input type=password name=pass placeholder=Пароль>
+        <input type=password name=pass_1 placeholder="Ещё раз пароль">
+        <input type=submit name=action value="Регистрация и вход >>">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <sub><p>{{ messages[0] }}</sub>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

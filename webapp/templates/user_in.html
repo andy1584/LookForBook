@@ -1,0 +1,9 @@
+<!-- Пользователь авторизован -->
+{% extends "base.html" %}
+
+{% block content %}
+    <form method=POST action="/profile">
+        <input type=submit value="<< Выход">
+        Вы: <b>{{ name }}</b>
+    </form>
+{% endblock %}
