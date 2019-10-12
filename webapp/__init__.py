@@ -1,3 +1,4 @@
+from celery import Celery
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -16,11 +17,26 @@ def create_app():
     @login_manager.user_loader                 # necessary element
     def load_user(user_id):
         return User.query.get(int(user_id))
-        
+
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)     # integrate blueprint into app
     
+    # Celery
+    celery = Celery(app.name, broker=app.config['CELERY_BROKER'])
+    celery.conf.update(app.config)
+
+    @celery.task
+    def counting(): # experimental task
+        with app.app_context:
+            for i in range(1000):
+                print(i)
+
+    @app.route('/counting')
+    def c():
+        #counting.delay()
+        return "HELLO WORLD!"
+
     return app
     
-#set FLASK_APP=platform && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
+#set FLASK_APP=webapp && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
