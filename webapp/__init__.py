@@ -28,14 +28,17 @@ def create_app():
 
     @celery.task
     def counting(): # experimental task
-        with app.app_context:
-            for i in range(1000):
-                print(i)
+        with app.app_context():
+            open('results.txt', 'w').write('9999999')
+            print('OK!')
+
+    celery.finalize()
 
     @app.route('/counting')
-    def c():
-        #counting.delay()
-        return "HELLO WORLD!"
+    def c(): # experimental view functon
+        print('!!!', counting)
+        counting()
+        return '+++'
 
     return app
     
