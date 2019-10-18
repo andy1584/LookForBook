@@ -105,4 +105,3 @@ def profile():
 def profile_out():
     logout_user()
     return redirect(url_for('auth.main'))
-

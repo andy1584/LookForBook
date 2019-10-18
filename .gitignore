@@ -3,4 +3,5 @@ __pycache__/
 env/
 *.db
 -*.*
-tests.py
+readme.rtf
+others/
